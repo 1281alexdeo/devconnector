@@ -1,23 +1,28 @@
 const express = require('express');
-const mongoose = require('mongoose');
 const app = express();
+const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const passport = require('passport');
 //DB Config
-const db = require('./config/keys').mongoURI;
-
-//CONNECT TO MONGO DB
-mongoose
+const db = require('./config/keys').mongoURI; //from keys file in config folder
+mongoose //CONNECT TO MONGO DB
   .connect(db)
   .then(() => console.log('MongoDb Connected'))
   .catch(err => console.log(err));
+//BODY PARSER MIDDLE WARE
+app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json());
+//PASSPORT MIDDLEWARE
+app.use(passport.initialize());
 
-//IMPORTING ROUTES/api FILES HERE
+//PASSPORT CONFIG
+
+//IMPORTING ROUTES routes/api FILES HERE
 const users = require('./routes/api/users');
 const profile = require('./routes/api/profile');
 const posts = require('./routes/api/posts');
 
-app.get('/', (req, res) => res.send('hello world!'));
-
-//USE routes /api/users will be default paths
+//USE ROUTES :/api/users will be default paths
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);

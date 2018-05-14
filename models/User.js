@@ -4,21 +4,20 @@ const Schema = mongoose.Schema;
 //CREATE Schema
 const UserSchema = new Schema({
   name: {
-    type: string,
-    require: true
+    type: String,
+    required: true
   },
 
   email: {
-    type: string,
-    require: true
+    type: String,
+    required: true
   },
   password: {
-    type: string,
-    require: true
+    type: String,
+    required: true
   },
   avatar: {
-    type: string,
-    require: true
+    type: String
   },
   date: {
     type: Date,
@@ -27,4 +26,4 @@ const UserSchema = new Schema({
 });
 
 //set it to a variable called User then = mongoose.model('name we wana use','name of the schema')
-module.exports = User = mongoose.model('users', 'UserSchema');
+module.exports = User = mongoose.model('users', UserSchema);
