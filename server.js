@@ -12,10 +12,12 @@ mongoose //CONNECT TO MONGO DB
 //BODY PARSER MIDDLE WARE
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
+
 //PASSPORT MIDDLEWARE
 app.use(passport.initialize());
 
 //PASSPORT CONFIG
+require('./config/passport')(passport);
 
 //IMPORTING ROUTES routes/api FILES HERE
 const users = require('./routes/api/users');
@@ -28,7 +30,6 @@ app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 
 const port = process.env.PORT || 5000; //because we are depoying on to heroku or run on port 5000
-
 app.listen(port, () =>
   console.log(`devconnector server  is running on port  ${port} `)
 );

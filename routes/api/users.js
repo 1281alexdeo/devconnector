@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const passport = require('passport');
 const keys = require('../../config/keys');
 //IMPORT GRAVATAR LIB HERE
 const gravatar = require('gravatar');
@@ -59,7 +60,6 @@ router.post('/register', (req, res) => {
 router.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
-
   //Find the user by Email
   User.findOne({ email }).then(user => {
     //{ email } is same as {email:email}  use es6 syntax
@@ -83,7 +83,7 @@ router.post('/login', (req, res) => {
               //callback will return err and the token
               res.json({
                 success: true,
-                token: 'Bearer' + token //tacking Bearer infront of the token
+                token: 'Bearer ' + token //tacking Bearer and spae infront of the token
               });
             }
           );
@@ -93,5 +93,20 @@ router.post('/login', (req, res) => {
       });
   });
 });
+//CREATE A PRIVATE ROUTE TO TEST PASSPORT
+//@route        GE T api/users/current
+//@description  Return the current user
+//access        Private
+router.get(
+  '/current',
+  passport.authenticate('jwt', { session: false }),
+  (req, res) => {
+    res.json({
+      id: req.user.id,
+      name: req.user.name,
+      email: req.user.email
+    }); //the user is now in req.user
+  }
+);
 
 module.exports = router;
