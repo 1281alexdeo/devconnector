@@ -17,7 +17,7 @@ app.use(bodyParser.json());
 app.use(passport.initialize());
 
 //PASSPORT CONFIG
-require('./config/passport')(passport);
+require('./config/passport')(passport); //passig passport to passport.js file
 
 //IMPORTING ROUTES routes/api FILES HERE
 const users = require('./routes/api/users');

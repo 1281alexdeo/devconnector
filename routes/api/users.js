@@ -3,10 +3,15 @@ const router = express.Router();
 const jwt = require('jsonwebtoken');
 const passport = require('passport');
 const keys = require('../../config/keys');
+
+//Load input validation
+const validateRegisterInput = require('../../validation/register');
+
 //IMPORT GRAVATAR LIB HERE
 const gravatar = require('gravatar');
 //IMPORT BCRYPTJS TO HASH THE password
 const bcrypt = require('bcryptjs');
+
 //LOAD USER MODEL
 const User = require('../../models/User');
 
@@ -19,10 +24,18 @@ router.get('/test', (req, res) => res.json({ msg: 'users works' }));
 //@description  Register users
 //access        Public
 router.post('/register', (req, res) => {
+  //pullout errors and isValid keys property from the function validateRegisterInput
+  const { errors, isValid } = validateRegisterInput(req.body); //pass everything sent to this route from form
+  //check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
+
   //use mongoose to find if the use exists
   User.findOne({ email: req.body.email }).then(user => {
     if (user) {
-      return res.status(400).json({ email: 'Email already exist' });
+      errors.email = 'Email already exist';
+      return res.status(400).json(errors);
     } else {
       const avatar = gravatar.url(req.body.email, {
         //putting the email into gravatar url to get a gravatar if any
@@ -73,7 +86,7 @@ router.post('/login', (req, res) => {
       .then(isMatch => {
         if (isMatch) {
           //User matched
-          const payload = { id: user.id, name: user.name, avatar: user.avatar }; //Create JWT Payload
+          const payload = { id: user.id, name: user.name, avatar: user.avatar }; //Create JWT Payload can be any data u want
           //Sign Token
           jwt.sign(
             payload,
@@ -101,11 +114,12 @@ router.get(
   '/current',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
+    //the user details is now in req.user
     res.json({
       id: req.user.id,
       name: req.user.name,
       email: req.user.email
-    }); //the user is now in req.user
+    });
   }
 );
 
