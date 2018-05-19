@@ -5,7 +5,7 @@ const Schema = mongoose.Schema;
 const PostSchema = new Schema({
   //connect each post to a USER
   user: {
-    type: Schema.Types.ObjecId,
+    type: Schema.Types.ObjectId,
     ref: 'users' //refering to the users collection
   },
   text: {
