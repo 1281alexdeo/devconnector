@@ -6,6 +6,7 @@ const keys = require('../../config/keys');
 
 //Load input validation
 const validateRegisterInput = require('../../validation/register');
+const validateLoginInput = require('../../validation/login');
 
 //IMPORT GRAVATAR LIB HERE
 const gravatar = require('gravatar');
@@ -14,11 +15,6 @@ const bcrypt = require('bcryptjs');
 
 //LOAD USER MODEL
 const User = require('../../models/User');
-
-//@route        GET api/users/test
-//@description  Test users route
-//access        Public
-router.get('/test', (req, res) => res.json({ msg: 'users works' }));
 
 //@route        post api/users/register
 //@description  Register users
@@ -71,14 +67,21 @@ router.post('/register', (req, res) => {
 //@description  Login users validation / return jwt token
 //access        Public
 router.post('/login', (req, res) => {
+  const { errors, isValid } = validateLoginInput(req.body);
+  // //check Validation
+  // if (!isValid) {
+  //   return res.status(400).json(errors);
+  // }
   const email = req.body.email;
   const password = req.body.password;
+
   //Find the user by Email
   User.findOne({ email }).then(user => {
     //{ email } is same as {email:email}  use es6 syntax
     // CHECK FOR USER
     if (!user) {
-      return res.status(404).json({ email: 'User not found' });
+      errors.email = 'User  email not found';
+      return res.status(404).json(errors);
     }
     // CHECK PASSWORD.note passowrd in db is hashed there4 use bcryptjs to compare
     bcrypt
