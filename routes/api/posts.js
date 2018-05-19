@@ -106,7 +106,8 @@ router.post(
     Profile.findOne({ user: req.user.id }).then(profile => {
       Post.findById(req.params.post_id).then(post => {
         //check if users in the likes array matches the id of the current user. filter will return a new array if it found a match.
-        //if the fillterd array length is > 0 that means there exist a user with that id in the array.hence he/she already liked the post
+        //if the fillterd array length is > 0 that means
+        //there exist a user with that id in the array.hence he/she already liked the post
         if (
           post.likes.filter(like => like.user.toString() === req.user.id)
             .length > 0
@@ -153,7 +154,6 @@ router.post(
             .save()
             .then(post => res.json(post))
             .catch(err => res.json(err));
-
           res.json({ success: true, post });
         }
         return res
@@ -192,7 +192,7 @@ router.post(
   }
 );
 
-//@route        DELETE api/post/comment/:post_id
+//@route        DELETE api/post/comment/:post_id/:comment_id
 //@description  Deleting a comment from a post
 //access        Private
 router.delete(
