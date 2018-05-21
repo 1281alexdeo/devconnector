@@ -29,7 +29,8 @@ app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
 
-const port = process.env.PORT || 5000; //because we are depoying on to heroku or run on port 5000
+const port = process.env.PORT || 5000; //because we are depoying on to heroku or run on port 5000 ///
+
 app.listen(port, () =>
   console.log(`devconnector server  is running on port  ${port} `)
 );
