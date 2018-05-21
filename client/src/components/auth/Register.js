@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import classnames from 'classnames';
-
 class Register extends Component {
   constructor() {
     super();
@@ -26,7 +25,7 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    //console.log(newUser);
+    //  this.props.registerUser(newUser);
     axios
       .post('/api/users/register', newUser)
       .then(res => console.log(res.data))
@@ -36,6 +35,7 @@ class Register extends Component {
 
   render() {
     const { errors } = this.state;
+
     return (
       <div className="register">
         <div className="container">
@@ -127,4 +127,5 @@ class Register extends Component {
     );
   }
 }
+
 export default Register;
