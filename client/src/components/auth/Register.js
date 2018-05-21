@@ -45,7 +45,7 @@ class Register extends Component {
               <p className="lead text-center">
                 Create your DevConnector account
               </p>
-              <form onSubmit={this.Submit.bind(this)}>
+              <form noValidate onSubmit={this.Submit.bind(this)}>
                 <div className="form-group">
                   <input
                     type="text"
@@ -58,8 +58,7 @@ class Register extends Component {
                     value={this.state.name}
                     onChange={this.onInputChangeHandler.bind(this)}
                   />
-                  //conditionaly render a some JSX
-                  {errors.name ? (
+                  {errors.name ? ( //conditionaly render a some JSX
                     <div className="invalid-feedback">{errors.name} </div> //iferror.name exists then render this div
                   ) : (
                     //else
@@ -77,10 +76,8 @@ class Register extends Component {
                     value={this.state.email}
                     onChange={this.onInputChangeHandler.bind(this)}
                   />
-                  {errors.email ? (
+                  {errors.email && (
                     <div className="invalid-feedback">{errors.email} </div>
-                  ) : (
-                    <div> </div>
                   )}
                   <small className="form-text text-muted">
                     This site uses Gravatar so if you want a profile image, use
