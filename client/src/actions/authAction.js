@@ -1,7 +1,7 @@
 import axios from 'axios';
 import setAuthToken from '../utils/setAuthToken';
 import jwt_decode from 'jwt-decode';
-import { GET_ERRORS } from './types';
+import { GET_ERRORS, SET_CURRENT_USER } from './types';
 
 //register users using thunk by returning a dispatch function
 export const registerUser = (userData, history) => dispatch => {
@@ -28,6 +28,10 @@ export const loginUser = userData => dispatch => {
       localStorage.setItem('jwtToken', token); //localStorage only stores strings
       //set token to Auth header --> like how we set token to authorization header in postman
       setAuthToken(token); //userdata is stored inside the token:- use package called jwtdecode to extract the data
+      //Decode token to get user userdata
+      const decoded = jwt_decode(token);
+      //Set current user
+      dispatch(setCurrentUser(decoded));
     })
     .catch(err =>
       dispatch({
@@ -35,4 +39,12 @@ export const loginUser = userData => dispatch => {
         payload: err.response.data
       })
     );
+};
+
+//Set Logged in user
+export const setCurrentUser = decoded => {
+  return {
+    type: SET_CURRENT_USER,
+    payload: decoded
+  };
 };
