@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import classnames from 'classnames';
 import { loginUser } from '../../actions/authAction';
@@ -31,7 +32,7 @@ class Login extends Component {
       });
     }
     if (nextProps.auth.isAuthenticated == true) {
-      this.props.history.push('/profiles');
+      this.props.history.push('/dashboard');
     }
   }
   render() {
@@ -85,6 +86,12 @@ class Login extends Component {
     );
   }
 }
+//using PropTypes
+Login.propTypes = {
+  loginUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired
+};
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
