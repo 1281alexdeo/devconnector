@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import axios from 'axios';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
@@ -131,6 +132,12 @@ class Register extends Component {
     );
   }
 }
+//using PropTypes
+Register.propTypes = {
+  registerUser: PropTypes.func.isRequired,
+  auth: PropTypes.object.isRequired
+};
+
 const mapStateToProps = state => ({
   auth: state.auth
 });
