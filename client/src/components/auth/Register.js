@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
-
+import { withRouter } from 'react-router-dom';
 import classnames from 'classnames';
 import { connect } from 'react-redux';
 import { registerUser } from '../../actions/authAction';
@@ -17,7 +17,7 @@ class Register extends Component {
   }
   //getting errors from redux state into component state using componentWillReceiveProps
   componentWillReceiveProps(nextProps) {
-    //test for errors in this.props exists
+    //test for errors in this.props.errors exists
     if (nextProps.errors) {
       //errors exists--> set the received props to the component state
       this.setState({
@@ -37,8 +37,7 @@ class Register extends Component {
       password: this.state.password,
       password2: this.state.password2
     };
-    this.props.registerUser(newUser);
-
+    this.props.registerUser(newUser, this.props.history);
     e.preventDefault();
   }
 
@@ -150,4 +149,4 @@ const mapStateToProps = state => ({
   errors: state.errors
 });
 
-export default connect(mapStateToProps, { registerUser })(Register);
+export default connect(mapStateToProps, { registerUser })(withRouter(Register));
