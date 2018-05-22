@@ -68,10 +68,10 @@ router.post('/register', (req, res) => {
 //access        Public
 router.post('/login', (req, res) => {
   const { errors, isValid } = validateLoginInput(req.body);
-  // //check Validation
-  // if (!isValid) {
-  //   return res.status(400).json(errors);
-  // }
+  //check Validation
+  if (!isValid) {
+    return res.status(400).json(errors);
+  }
   const email = req.body.email;
   const password = req.body.password;
 
@@ -80,8 +80,8 @@ router.post('/login', (req, res) => {
     //{ email } is same as {email:email}  use es6 syntax
     // CHECK FOR USER
     if (!user) {
-      errors.email = 'User  email not found';
-      return res.status(404).json(errors);
+      errors.email = 'User email not found';
+      return res.status(400).json(errors);
     }
     // CHECK PASSWORD.note passowrd in db is hashed there4 use bcryptjs to compare
     bcrypt

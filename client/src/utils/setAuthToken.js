@@ -1,6 +1,5 @@
 //use axios defaults which we can set a default header for every request
 import axios from 'axios';
-
 const setAuthToken = token => {
   if (token) {
     //apply to every request
