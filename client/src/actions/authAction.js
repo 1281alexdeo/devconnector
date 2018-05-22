@@ -1,8 +1,15 @@
-import { TEST_DISPATCH } from './types';
-//register users tesing
-export const registerUser = userData => {
-  return {
-    type: TEST_DISPATCH,
-    payload: userData
-  };
+import axios from 'axios';
+import { GET_ERRORS } from './types';
+
+//register users using thunk by returning a dispatch function
+export const registerUser = userData => dispatch => {
+  axios
+    .post('/api/users/register', userData)
+    .then(res => console.log(res.data)) //wana redirect
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
 };
