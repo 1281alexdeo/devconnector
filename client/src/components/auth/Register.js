@@ -15,6 +15,14 @@ class Register extends Component {
       errors: {}
     };
   }
+
+  //prevent manual routing through URL address Navbar
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
+  }
+
   //getting errors from redux state into component state using componentWillReceiveProps
   componentWillReceiveProps(nextProps) {
     //test for errors in this.props.errors exists

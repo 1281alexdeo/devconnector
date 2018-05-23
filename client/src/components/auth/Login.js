@@ -12,6 +12,7 @@ class Login extends Component {
       errors: {}
     };
   }
+
   onInputChangeHandler(e) {
     this.setState({
       [e.target.name]: e.target.value
@@ -24,6 +25,12 @@ class Login extends Component {
     };
     this.props.loginUser(userData);
     e.preventDefault();
+  }
+  //prevent manual routing through URL address Navbar
+  componentDidMount() {
+    if (this.props.auth.isAuthenticated) {
+      this.props.history.push('/dashboard');
+    }
   }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
