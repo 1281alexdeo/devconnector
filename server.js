@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const compression = require('compression');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const passport = require('passport');
@@ -10,6 +11,7 @@ mongoose //CONNECT TO MONGO DB
   .then(() => console.log('MongoDb Connected'))
   .catch(err => console.log(err));
 //BODY PARSER MIDDLE WARE
+app.use(compression());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 

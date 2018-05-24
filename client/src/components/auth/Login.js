@@ -24,8 +24,8 @@ class Login extends Component {
       email: this.state.email,
       password: this.state.password
     };
-    this.props.loginUser(userData);
     e.preventDefault();
+    this.props.loginUser(userData);
   }
   //prevent manual routing through URL address Navbar
   componentDidMount() {
