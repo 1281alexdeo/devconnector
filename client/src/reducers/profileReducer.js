@@ -4,6 +4,7 @@ import {
   GET_ERRORS,
   CLEAR_CURRENT_PROFILE
 } from '../actions/types';
+//initial state
 const initalState = {
   loading: false,
   profile: null,
@@ -23,10 +24,7 @@ export default function(state = initalState, action) {
         profile: action.payload,
         loading: false
       };
-    case GET_ERRORS:
-      return {
-        ...state
-      };
+
     case CLEAR_CURRENT_PROFILE:
       return {
         ...state,
