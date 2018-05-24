@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { logoutUser } from '../../actions/authAction';
+import { clearCurrentProfile } from '../../actions/profileActions';
 
 class Navbar extends Component {
   onLogoutClicked(e) {
     e.preventDefault();
+    this.props.clearCurrentProfile();
     this.props.logoutUser();
   }
   render() {
@@ -73,7 +75,7 @@ class Navbar extends Component {
               </li>
             </ul>
             {/* render authLinks or guestLinks dependin if user is authenicated */}
-            {isAuthenticated === true ? authLinks : guestLinks}
+            {isAuthenticated ? authLinks : guestLinks}
           </div>
         </div>
       </nav>
@@ -87,4 +89,6 @@ Navbar.propTypes = {
 const mapStateToProps = state => ({
   auth: state.auth
 });
-export default connect(mapStateToProps, { logoutUser })(Navbar);
+export default connect(mapStateToProps, { logoutUser, clearCurrentProfile })(
+  Navbar
+);
