@@ -73,7 +73,7 @@ class Navbar extends Component {
               </li>
             </ul>
             {/* render authLinks or guestLinks dependin if user is authenicated */}
-            {isAuthenticated == true ? authLinks : guestLinks}
+            {isAuthenticated === true ? authLinks : guestLinks}
           </div>
         </div>
       </nav>

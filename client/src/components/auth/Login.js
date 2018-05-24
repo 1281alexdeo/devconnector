@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import classnames from 'classnames';
+
 import { loginUser } from '../../actions/authAction';
 import TextFieldGroup from '../../common/TextFieldGroup';
 class Login extends Component {
@@ -39,7 +39,7 @@ class Login extends Component {
         errors: nextProps.errors
       });
     }
-    if (nextProps.auth.isAuthenticated == true) {
+    if (nextProps.auth.isAuthenticated === true) {
       this.props.history.push('/dashboard');
     }
   }
