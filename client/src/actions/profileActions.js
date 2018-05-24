@@ -2,7 +2,6 @@ import axios from 'axios';
 import { GET_PROFILE, PROFILE_LOADING } from './types';
 
 //get current profile
-
 export const getCurrentProfile = () => dispatch => {
   dispatch(setProfileLoading());
   axios
@@ -22,7 +21,6 @@ export const getCurrentProfile = () => dispatch => {
 };
 
 //profile PROFILE_LOADING
-
 export const setProfileLoading = () => {
   return {
     type: PROFILE_LOADING

@@ -6,7 +6,7 @@ const initalState = {
 };
 
 export default function(state = initalState, action) {
-  switch (action.payload) {
+  switch (action.type) {
     case PROFILE_LOADING:
       return {
         ...state,
