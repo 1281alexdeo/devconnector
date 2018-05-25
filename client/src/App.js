@@ -1,21 +1,23 @@
-import React, { Component } from 'react';
-import './App.css';
-import { BrowserRouter, Route } from 'react-router-dom';
+import React, { Component } from "react";
+import "./App.css";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import PrivateRoute from "./common/PrivateRoute";
 
-import jwt_decode from 'jwt-decode';
-import setAuthToken from './utils/setAuthToken';
-import { setCurrentUser } from './actions/authAction';
-import { clearCurrentProfile } from './actions/profileActions';
+import jwt_decode from "jwt-decode";
+import setAuthToken from "./utils/setAuthToken";
+import { setCurrentUser } from "./actions/authAction";
+import { clearCurrentProfile } from "./actions/profileActions";
 
-import { Provider } from 'react-redux';
-import store from './store/store';
-import { logoutUser } from './actions/authAction';
-import Navbar from './components/layouts/Navbar';
-import Footer from './components/layouts/Footer';
-import Landing from './components/layouts/Landing';
-import Login from './components/auth/Login';
-import Register from './components/auth/Register';
-import Dashbord from './components/dashboard/Dashboard';
+import { Provider } from "react-redux";
+import store from "./store/store";
+import { logoutUser } from "./actions/authAction";
+import Navbar from "./components/layouts/Navbar";
+import Footer from "./components/layouts/Footer";
+import Landing from "./components/layouts/Landing";
+import Login from "./components/auth/Login";
+import Register from "./components/auth/Register";
+import Dashbord from "./components/dashboard/Dashboard";
+import CreateProfile from "./components/create-profile/CreateProfile";
 
 //Check for Token
 if (localStorage.jwtToken) {
@@ -35,7 +37,7 @@ if (localStorage.jwtToken) {
     // TODO: //clear current profile
     store.dispatch(clearCurrentProfile());
     //redirect to login
-    window.location.href = '/login';
+    window.location.href = "/login";
   }
 }
 
@@ -50,7 +52,14 @@ class App extends Component {
             <div className="container">
               <Route exact path="/login" component={Login} />
               <Route exact path="/register" component={Register} />
-              <Route exact path="/dashboard" component={Dashbord} />
+              <Switch>
+                <PrivateRoute exact path="/dashboard" component={Dashbord} />
+                <PrivateRoute
+                  exact
+                  path="/create-profile"
+                  component={CreateProfile}
+                />
+              </Switch>
             </div>
             <Footer />
           </div>
