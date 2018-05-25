@@ -29,11 +29,11 @@ class Login extends Component {
     this.props.loginUser(userData);
   }
   //prevent manual routing through URL address Navbar
-  componentDidMount() {
-    if (this.props.auth.isAuthenticated) {
-      this.props.history.push('/dashboard');
-    }
-  }
+  // componentDidMount() {
+  //   if (this.props.auth.isAuthenticated) {
+  //     this.props.history.push('/dashboard');
+  //   }
+  // }
   componentWillReceiveProps(nextProps) {
     if (nextProps.errors) {
       this.setState({

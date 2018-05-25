@@ -17,7 +17,6 @@ export default function(state = initalState, action) {
         ...state,
         loading: true
       };
-
     case GET_PROFILE: //returns current state and setting the profile to the paload of GET_PROFILE Action
       return {
         ...state,

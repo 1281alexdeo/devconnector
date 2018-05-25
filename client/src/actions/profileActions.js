@@ -23,10 +23,10 @@ export const getCurrentProfile = () => dispatch => {
         type: GET_PROFILE,
         payload: {} //if the request was no profile we pass an empty obeject inidcating that there is no profile for that user
       });
-      dispatch({
-        type: GET_ERRORS,
-        payload: err.response.data //passing the actual errors from the backend api
-      });
+      // dispatch({
+      //   type: GET_ERRORS,
+      //   payload: err.response.data //passing the actual errors from the backend api
+      // });
     });
 };
 
