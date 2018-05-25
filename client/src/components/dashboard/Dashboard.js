@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import PropTypes from 'prop-types';
-import { connect } from 'react-redux';
-import { getCurrentProfile } from '../../actions/profileActions';
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import { getCurrentProfile } from "../../actions/profileActions";
+import Spinner from "../../common/Spinner";
 class Dashbord extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -12,7 +13,7 @@ class Dashbord extends Component {
 
     let dashboardContent;
     if (profile === null || loading) {
-      dashboardContent = <h4>loading...</h4>;
+      dashboardContent = <Spinner />;
     } else {
       dashboardContent = <h4>Hellow!! </h4>;
     }

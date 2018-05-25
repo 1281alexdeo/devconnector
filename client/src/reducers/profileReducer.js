@@ -2,7 +2,7 @@ import {
   GET_PROFILE,
   PROFILE_LOADING,
   CLEAR_CURRENT_PROFILE
-} from '../actions/types';
+} from "../actions/types";
 //initial state
 const initalState = {
   loading: false,
