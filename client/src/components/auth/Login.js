@@ -20,11 +20,12 @@ class Login extends Component {
     });
   }
   Submit(e) {
+    e.preventDefault();
     const userData = {
       email: this.state.email,
       password: this.state.password
     };
-    e.preventDefault();
+
     this.props.loginUser(userData);
   }
   //prevent manual routing through URL address Navbar
@@ -39,7 +40,7 @@ class Login extends Component {
         errors: nextProps.errors
       });
     }
-    if (nextProps.auth.isAuthenticated === true) {
+    if (nextProps.auth.isAuthenticated) {
       this.props.history.push('/dashboard');
     }
   }
