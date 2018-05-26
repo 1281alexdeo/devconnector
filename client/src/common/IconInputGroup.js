@@ -14,7 +14,7 @@ const IconInputGroup = ({
 }) => {
   return (
     <div className="input-group mb-3">
-      <div className="input-group-repend">
+      <div className="input-group-prepend">
         <span className="input-group-text">
           <i className={icon} />
         </span>
@@ -28,7 +28,6 @@ const IconInputGroup = ({
         value={value}
         onChange={onChange}
       />
-
       {error && <div className="invalid-feedback">{error} </div>}
     </div>
   );
