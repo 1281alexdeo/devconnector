@@ -34,11 +34,12 @@ export const getCurrentProfile = () => dispatch => {
 export const createProfile = (profileData,history)=>dispatch=>{
 axios.post('/api/profile',profileData)
   .then(res=>history.push('/dashboard'))
-  .catch(err=> 
+  .catch(err =>
     dispatch({
-          type:GET_ERRORS,
-          payload:err.response.data
-  }) )
+      type: GET_ERRORS,
+      payload: err.response.data
+    })
+  );
 }
 
 
