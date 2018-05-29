@@ -122,7 +122,7 @@ class CreateProfile extends Component {
 
     let SocialInputs;
     if (displaySocialInputs) {
-      SocialInputs = (
+      SocialInputs = ( //display SocialInputs if displaySocialInput is true
         <div>
           <IconInputGroup
             placeholder="Twitter Profile URL"
@@ -261,18 +261,20 @@ class CreateProfile extends Component {
                 />
                 <div className="mb-3">
                   <button
+                    className="button btn btn-light"
                     type="button"
                     onClick={() => {
+                      //Button to toggle the displaySocialInputs component state
                       this.setState({
                         displaySocialInputs: !this.state.displaySocialInputs
                       });
                     }}
-                    className="button btn btn-light"
                   >
                     Add Social Network Links
                   </button>
                   <span className="text-muted">Optional</span>
                 </div>
+                {/* SocialInputs variable will be conditionally rendered depending no the displaySocialInputs state check line 123-169 */}
                 {SocialInputs}
                 <input
                   type="submit"
