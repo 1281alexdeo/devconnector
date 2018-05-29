@@ -37,7 +37,7 @@ IconInputGroup.propTypes = {
   name: PropTypes.string.isRequired,
   type: PropTypes.string.isRequired,
   placeholder: PropTypes.string,
-  value: PropTypes.string.isRequired,
+  value: PropTypes.string,
   icon: PropTypes.string,
   error: PropTypes.string,
   onChange: PropTypes.func.isRequired

@@ -69,14 +69,13 @@ class CreateProfile extends Component {
       //Bring skills array back to CSV
       const skillsCSV = profile.skills.join(",");
 
-      //If profile field doesnet exist make empty string
+      //If profile field doesn't exist make empty string
       profile.company = !isEmpty(profile.company) ? profile.company : "";
       profile.website = !isEmpty(profile.website) ? profile.website : "";
       profile.location = !isEmpty(profile.location) ? profile.location : "";
       profile.githubusername = !isEmpty(profile.githubusername)
         ? profile.githubusername
         : "";
-
       profile.bio = !isEmpty(profile.bio) ? profile.bio : "";
 
       //Social will be difference since is its own object
@@ -101,7 +100,7 @@ class CreateProfile extends Component {
         website: profile.website,
         location: profile.location,
         status: profile.status,
-        skills: profile.skills,
+        skills: skillsCSV,
         githubusername: profile.githubusername,
         bio: profile.bio,
         twitter: profile.twitter,
@@ -290,7 +289,9 @@ class CreateProfile extends Component {
 }
 CreateProfile.propTypes = {
   profile: PropTypes.object.isRequired,
-  errors: PropTypes.object.isRequired
+  errors: PropTypes.object.isRequired,
+  createProfile: PropTypes.func.isRequired,
+  getCurrentProfile: PropTypes.func.isRequired
 };
 const mapStateToProp = state => ({
   profile: state.profile,
