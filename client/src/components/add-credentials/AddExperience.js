@@ -16,7 +16,7 @@ class AddExperience extends Component {
       to: "",
       current: false,
       description: "",
-      errors: ""
+      errors: {}
     };
 
     this.onSubmit = this.onSubmit.bind(this);
@@ -65,27 +65,7 @@ class AddExperience extends Component {
   }
   render() {
     const { errors, current } = this.state;
-    let toDate;
-    if (current === false) {
-      toDate = (
-        <TextFieldGroup
-          type="date"
-          name="to"
-          value={this.state.to}
-          onChange={this.onChange}
-        />
-      );
-    } else {
-      toDate = (
-        <TextFieldGroup
-          type="date"
-          name="to"
-          value={this.state.to}
-          onChange={this.onChange}
-          disabled="disabled"
-        />
-      );
-    }
+
     return (
       <div className="section add-experience">
         <div className="container">
@@ -131,7 +111,13 @@ class AddExperience extends Component {
                     error={errors.from}
                   />
                   <h6>To Date</h6>
-                  {toDate}
+                  <TextFieldGroup
+                    type="date"
+                    name="to"
+                    value={this.state.to}
+                    onChange={this.onChange}
+                    disabled={this.state.current === true ? "disabled" : ""}
+                  />
                 </div>
 
                 <div className="form-check mb-4">

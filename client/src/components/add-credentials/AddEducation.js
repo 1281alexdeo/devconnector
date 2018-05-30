@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
+import { withRouter, Link } from "react-router-dom";
 import TextFieldGroup from "../../common/TextFieldGroup";
 import TextAreaFieldGroup from "../../common/TextAreaFieldGroup";
 import { addEducation } from "../../actions/profileActions";
@@ -16,7 +16,7 @@ class AddEducation extends Component {
       to: "",
       current: false,
       description: "",
-      errors: ""
+      errors: {}
     };
     this.onSubmit = this.onSubmit.bind(this);
     this.onChange = this.onChange.bind(this);
@@ -56,35 +56,14 @@ class AddEducation extends Component {
   render() {
     const { errors, current } = this.state;
 
-    let toDate;
-    if (current === false) {
-      toDate = (
-        <TextFieldGroup
-          name="to"
-          type="date"
-          value={this.state.to}
-          onChange={this.onChange}
-        />
-      );
-    } else {
-      toDate = (
-        <TextFieldGroup
-          name="to"
-          type="date"
-          value={this.state.to}
-          onChange={this.onChange}
-          disabled="disabled"
-        />
-      );
-    }
     return (
       <div className="add-education">
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <a href="dashboard.html" className="btn btn-light">
+              <Link to="/dashboard" className="btn btn-light">
                 Go Back
-              </a>
+              </Link>
               <h1 className="display-4 text-center">Add Your Education</h1>
               <p className="lead text-center">
                 Add any school, bootcamp, etc that you have attended
@@ -121,7 +100,14 @@ class AddEducation extends Component {
                   error={errors.from}
                 />
                 <h6>To Date</h6>
-                {toDate}
+                <TextFieldGroup
+                  name="to"
+                  type="date"
+                  value={this.state.to}
+                  onChange={this.onChange}
+                  disabled={this.state.current === true ? "disabled" : ""}
+                />
+
                 <div className="form-check mb-4">
                   <input
                     className="form-check-input"
