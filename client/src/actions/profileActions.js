@@ -70,10 +70,21 @@ export const clearCurrentProfile = () => {
 };
 
 //ADD EXPERIENCE
-
 export const addExperience = (formData, history) => dispatch => {
   axios
     .post("/api/profile/experience", formData)
+    .then(res => history.push("/dashboard"))
+    .catch(err =>
+      dispatch({
+        type: GET_ERRORS,
+        payload: err.response.data
+      })
+    );
+};
+//ADD EDUCATION
+export const addEducation = (formData, history) => dispatch => {
+  axios
+    .post("/api/profile/education", formData)
     .then(res => history.push("/dashboard"))
     .catch(err =>
       dispatch({

@@ -148,11 +148,12 @@ class AddExperience extends Component {
                   </label>
                 </div>
                 <div className="form-group">
-                  <textarea
+                  <TextAreaGroup
                     className="form-control form-control-lg"
                     placeholder="Job Description"
                     name="description"
                     onChange={this.onChange}
+                    value={this.state.description}
                   />
                   <small className="form-text text-muted">
                     Some of your responsabilities, etc
