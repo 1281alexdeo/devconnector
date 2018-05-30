@@ -5,6 +5,8 @@ import { connect } from "react-redux";
 import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
 import Spinner from "../../common/Spinner";
 import ProfileActions from "./ProfileActions";
+import Experience from "./Experience";
+import Education from "./Education";
 class Dashbord extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -29,7 +31,8 @@ class Dashbord extends Component {
               Welcome <Link to={`/profile/${profile.handle}`}>{user.name}</Link>
             </p>
             <ProfileActions />
-            {/* TODO:  EXPERIENCE AND EDUCATION */}
+            <Experience experience={profile.experience} />
+            <Education education={profile.education} />
             <br />
             <button
               onClick={this.onDeleteClick.bind(this)}

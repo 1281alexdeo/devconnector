@@ -43,17 +43,17 @@ class AddExperience extends Component {
     });
   }
   onCurrentChange(e) {
-    const d = new Date();
-    let Present = {
-      date: d.getDate(),
-      month: d.getMonth(),
-      year: d.getFullYear()
-    };
-    const today = ` ${Present.year}-${Present.month + 1}-${Present.date}`;
+    // const d = new Date();
+    // let Present = {
+    //   date: d.getDate(),
+    //   month: d.getMonth(),
+    //   year: d.getFullYear()
+    // };
+    // const today = ` ${Present.year}-${Present.month + 1}-${Present.date}`;
 
     this.setState({
-      [e.target.name]: !this.state.current,
-      to: today
+      [e.target.name]: !this.state.current
+      // to: today
     });
   }
   componentWillReceiveProps(nextProps) {
