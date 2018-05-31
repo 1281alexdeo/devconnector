@@ -1,12 +1,12 @@
-import React, { Component } from "react";
-import PropTypes from "prop-types";
-import { Link } from "react-router-dom";
-import { connect } from "react-redux";
-import { getCurrentProfile, deleteAccount } from "../../actions/profileActions";
-import Spinner from "../../common/Spinner";
-import ProfileActions from "./ProfileActions";
-import Experience from "./Experience";
-import Education from "./Education";
+import React, { Component } from 'react';
+import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import { getCurrentProfile, deleteAccount } from '../../actions/profileActions';
+import Spinner from '../../common/Spinner';
+import ProfileActions from './ProfileActions';
+import Experience from './Experience';
+import Education from './Education';
 class Dashbord extends Component {
   componentDidMount() {
     this.props.getCurrentProfile();
@@ -49,7 +49,7 @@ class Dashbord extends Component {
             <p className="lead text-muted">Welcome {user.name}</p>
             <p>You have not yet setup a profile, please add some info</p>
             <Link to="/create-profile" className="btn btn-lg btn-info">
-              {" "}
+              {' '}
               Create Profile
             </Link>
           </div>

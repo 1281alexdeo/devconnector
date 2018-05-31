@@ -1,12 +1,8 @@
-import React, { Component } from "react";
-import Moment from "react-moment";
-import { connect } from "react-redux";
-import { deleteEducation } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import Moment from 'react-moment';
+import { connect } from 'react-redux';
+import { deleteEducation } from '../../actions/profileActions';
 class Education extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   delete(id) {
     this.props.deleteEducation(id);
   }
@@ -19,9 +15,9 @@ class Education extends Component {
             <td>{education.degree}</td>
             <td>
               <Moment format="YYYY/MM/DD">{education.from}</Moment>
-              -{" "}
+              -{' '}
               {education.to === null ? (
-                " Present"
+                ' Present'
               ) : (
                 <Moment format="YYYY/MM/DD">{education.to}</Moment>
               )}

@@ -1,36 +1,31 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter } from "react-router-dom";
-import Moment from "react-moment";
-import { deleteExperience } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import Moment from 'react-moment';
+import { deleteExperience } from '../../actions/profileActions';
 class Experience extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {};
-  }
   delete(exp_id) {
     console.log(exp_id);
 
-    this.props.deleteExperience(exp_id, this.props.history);
+    this.props.deleteExperience(exp_id);
   }
   render() {
-    const experiences = this.props.experience.map((exp, index) => {
+    const experiences = this.props.experience.map((experience, index) => {
       return (
         <tbody key={index}>
           <tr>
-            <td>{exp.company}</td>
-            <td>{exp.title}</td>
+            <td>{experience.company}</td>
+            <td>{experience.title}</td>
             <td>
-              <Moment format="YYYY/MM/DD">{exp.from}</Moment> -
-              {exp.to === null ? (
-                " Present"
+              <Moment format="YYYY/MM/DD">{experience.from}</Moment> -
+              {experience.to === null ? (
+                'Present'
               ) : (
-                <Moment format="YYYY/MM/DD">{exp.to}</Moment>
+                <Moment format="YYYY/MM/DD">{experience.to}</Moment>
               )}
             </td>
             <td>
               <button
-                onClick={this.delete.bind(this, exp._id)}
+                onClick={this.delete.bind(this, experience._id)}
                 className="btn btn-danger"
               >
                 Delete
@@ -58,4 +53,4 @@ class Experience extends Component {
     );
   }
 }
-export default connect(null, { deleteExperience })(withRouter(Experience));
+export default connect(null, { deleteExperience })(Experience);
