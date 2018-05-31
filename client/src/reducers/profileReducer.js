@@ -1,8 +1,9 @@
 import {
   GET_PROFILE,
   PROFILE_LOADING,
-  CLEAR_CURRENT_PROFILE
-} from "../actions/types";
+  CLEAR_CURRENT_PROFILE,
+  GET_PROFILES
+} from '../actions/types';
 //initial state
 const initalState = {
   loading: false,
@@ -28,6 +29,12 @@ export default function(state = initalState, action) {
       return {
         ...state, //get current state
         profile: null //setting the profile back to null once the user has logged out
+      };
+    case GET_PROFILES:
+      return {
+        ...state,
+        profiles: action.payload,
+        loading: false
       };
     default:
       return state;
