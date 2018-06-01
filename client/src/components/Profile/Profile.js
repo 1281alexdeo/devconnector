@@ -11,16 +11,34 @@ import { getProfileByHandle } from '../../actions/profileActions';
 
 class Profile extends Component {
   componentDidMount = () => {
-    //   getting the handle from the url
+    //   getting the handle from directly from the url using this.props.match.params
     //check if handle is present in the url
     if (this.props.match.params.handle)
       this.props.getProfileByHandle(this.props.match.params.handle);
   };
 
   render() {
-    const { profile } = this.props.profile;
+    const { profile, loading } = this.props.profile;
+    let profileConent;
+    if (profile === null || loading) {
+      profileConent = <Spinner />;
+    } else {
+      profileConent = (
+        <div>
+          <div className="row">
+            <div className="col-md-6">
+              <Link className="btn btn-light" to="/dashboard">
+                Go Back
+              </Link>
+            </div>
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
+        {profileConent}
         <ProfileHeader />
         <ProfileAbout />
         <ProfileCreds />
