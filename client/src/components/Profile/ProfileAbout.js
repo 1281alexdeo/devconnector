@@ -16,7 +16,7 @@ class ProfileAbout extends Component {
         );
       });
     } else {
-      null;
+      return 'user have no skill';
     }
     return (
       <div className="row">

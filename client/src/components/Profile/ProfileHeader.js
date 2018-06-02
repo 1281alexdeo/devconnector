@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import { PROFILE_LOADING } from '../../actions/types';
-import { Link } from 'react-router-dom';
 import isEmpty from '../../validation/is-empty';
 
 class ProfileHeader extends Component {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { Link } from 'react-router-dom';
 import PropTypes from 'prop-types';
 class ProfileGithub extends Component {
@@ -22,9 +21,11 @@ class ProfileGithub extends Component {
     )
       .then(res => res.json())
       .then(data => {
-        this.setState({
-          repos: data
-        });
+        if (this.refs.myRef) {
+          this.setState({
+            repos: data
+          });
+        }
       })
       .catch(err => console.log(err));
   };
@@ -34,7 +35,7 @@ class ProfileGithub extends Component {
     console.log('REPO', repos);
     const repoItems = repos.map(repo => {
       return (
-        <div className="card card-body mb-2" key={repo.id}>
+        <div className="card card-body mb-1" key={repo.id}>
           <div className="row">
             <div className="col-md-6">
               <h4>
@@ -60,7 +61,8 @@ class ProfileGithub extends Component {
       );
     });
     return (
-      <div>
+      // have to put ref to fix the error (can't call setState or (force update) on unmounted component,indicated memory leak in you applciaiotn
+      <div ref="myRef">
         <hr />
         <h3 className=" mb-4 ">Latest Github Repo</h3>
         {repoItems}

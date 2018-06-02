@@ -8,7 +8,6 @@ import Spinner from '../../common/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProfileByHandle } from '../../actions/profileActions';
-import { GET_PROFILES } from '../../actions/types';
 
 class Profile extends Component {
   componentDidMount = () => {

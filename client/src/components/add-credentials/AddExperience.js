@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { withRouter, Link } from "react-router-dom";
-import TextFieldGroup from "../../common/TextFieldGroup";
-import TextAreaGroup from "../../common/TextAreaFieldGroup";
-import { connect } from "react-redux";
-import { addExperience } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import { withRouter, Link } from 'react-router-dom';
+import TextFieldGroup from '../../common/TextFieldGroup';
+import TextAreaGroup from '../../common/TextAreaFieldGroup';
+import { connect } from 'react-redux';
+import { addExperience } from '../../actions/profileActions';
 
 class AddExperience extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      title: "",
-      company: "",
-      location: "",
-      from: "",
-      to: "",
+      title: '',
+      company: '',
+      location: '',
+      from: '',
+      to: '',
       current: false,
-      description: "",
+      description: '',
       errors: {}
     };
 
@@ -35,7 +35,7 @@ class AddExperience extends Component {
       description: this.state.description
     };
     this.props.addExperience(formData, this.props.history);
-    console.log("submited");
+    console.log('submited');
   }
   onChange(e) {
     this.setState({
@@ -64,7 +64,7 @@ class AddExperience extends Component {
     }
   }
   render() {
-    const { errors, current } = this.state;
+    const { errors } = this.state;
 
     return (
       <div className="section add-experience">
@@ -116,7 +116,7 @@ class AddExperience extends Component {
                     name="to"
                     value={this.state.to}
                     onChange={this.onChange}
-                    disabled={this.state.current === true ? "disabled" : ""}
+                    disabled={this.state.current === true ? 'disabled' : ''}
                   />
                 </div>
 
