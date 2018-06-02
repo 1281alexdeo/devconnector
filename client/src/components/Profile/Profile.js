@@ -8,6 +8,7 @@ import Spinner from '../../common/Spinner';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { getProfileByHandle } from '../../actions/profileActions';
+import { GET_PROFILES } from '../../actions/types';
 
 class Profile extends Component {
   componentDidMount = () => {
@@ -35,7 +36,7 @@ class Profile extends Component {
           </div>
           <ProfileHeader profile={profile} />
           <ProfileAbout profile={profile} />
-          <ProfileCreds />
+          <ProfileCreds profile={profile} />
           <ProfileGithub />
         </div>
       );
