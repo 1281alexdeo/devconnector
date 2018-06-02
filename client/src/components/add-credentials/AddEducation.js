@@ -1,21 +1,21 @@
-import React, { Component } from "react";
-import { connect } from "react-redux";
-import { withRouter, Link } from "react-router-dom";
-import TextFieldGroup from "../../common/TextFieldGroup";
-import TextAreaFieldGroup from "../../common/TextAreaFieldGroup";
-import { addEducation } from "../../actions/profileActions";
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { withRouter, Link } from 'react-router-dom';
+import TextFieldGroup from '../../common/TextFieldGroup';
+import TextAreaFieldGroup from '../../common/TextAreaFieldGroup';
+import { addEducation } from '../../actions/profileActions';
 
 class AddEducation extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      school: "",
-      fieldofstudy: "",
-      degree: "",
-      from: "",
-      to: "",
+      school: '',
+      fieldofstudy: '',
+      degree: '',
+      from: '',
+      to: '',
       current: false,
-      description: "",
+      description: '',
       errors: {}
     };
     this.onSubmit = this.onSubmit.bind(this);
@@ -39,7 +39,7 @@ class AddEducation extends Component {
     };
 
     this.props.addEducation(formData, this.props.history);
-    console.log("submitted");
+    console.log('submitted');
   }
   onCurrentChecked() {
     this.setState({
@@ -105,7 +105,7 @@ class AddEducation extends Component {
                   type="date"
                   value={this.state.to}
                   onChange={this.onChange}
-                  disabled={this.state.current === true ? "disabled" : ""}
+                  disabled={this.state.current === true ? 'disabled' : ''}
                 />
 
                 <div className="form-check mb-4">

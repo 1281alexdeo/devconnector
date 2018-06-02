@@ -1,8 +1,7 @@
-import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
 import isEmpty from '../../validation/is-empty';
-import { spawn } from 'child_process';
 
 class ProfileItem extends Component {
   render() {
