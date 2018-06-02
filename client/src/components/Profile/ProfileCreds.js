@@ -66,14 +66,18 @@ class ProfileCreds extends Component {
     });
     return (
       <div className="row">
-        <div className="col-md-6">
-          <h3 className="text-center text-info">Experience</h3>
-          {experiences}
-        </div>
-        <div className="col-md-6">
-          <h3 className="text-center text-info">Education</h3>
-          {educations}
-        </div>
+        {!isEmpty(experiences) ? (
+          <div className="col-md-6">
+            <h3 className="text-center text-info">Experience</h3>
+            {experiences}
+          </div>
+        ) : null}
+        {!isEmpty(educations) ? (
+          <div className="col-md-6">
+            <h3 className="text-center text-info">Education</h3>
+            {educations}
+          </div>
+        ) : null}
       </div>
     );
   }
