@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import Moment from 'react-moment';
-import { Mongoose } from 'mongoose';
 import isEmpty from '../../validation/is-empty';
 class ProfileCreds extends Component {
   render() {
-    const { profile } = this.props;
-    const experiences = profile.experience.map((exp, index) => {
+    const { experience, education } = this.props;
+    const experiences = experience.map((exp, index) => {
       return (
         <div key={index}>
           <ul className="list-group">
-            <li className="list-group-item">
+            <li className="list-group-item mb-1">
               <h4>{exp.company}</h4>
               <p>
                 {isEmpty(exp.from) ? null : (
@@ -33,10 +32,10 @@ class ProfileCreds extends Component {
         </div>
       );
     });
-    const education = profile.education.map((edu, index) => {
+    const educations = education.map((edu, index) => {
       return (
         <ul key={index} className="list-group">
-          <li className="list-group-item">
+          <li className="list-group-item mb-1">
             <h4>{edu.school}</h4>
             <p>
               {isEmpty(edu.from) ? null : (
@@ -73,7 +72,7 @@ class ProfileCreds extends Component {
         </div>
         <div className="col-md-6">
           <h3 className="text-center text-info">Education</h3>
-          {education}
+          {educations}
         </div>
       </div>
     );
