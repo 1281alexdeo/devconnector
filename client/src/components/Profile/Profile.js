@@ -27,22 +27,25 @@ class Profile extends Component {
         <div>
           <div className="row">
             <div className="col-md-6">
-              <Link className="btn btn-light" to="/dashboard">
-                Go Back
+              <Link className="btn btn-light mb-3   float-left" to="/profiles">
+                Back To Profiles
               </Link>
             </div>
+            <div className="col-md-6" />
           </div>
+          <ProfileHeader profile={profile} />
+          <ProfileAbout />
+          <ProfileCreds />
+          <ProfileGithub />
         </div>
       );
     }
 
     return (
-      <div>
-        {profileConent}
-        <ProfileHeader />
-        <ProfileAbout />
-        <ProfileCreds />
-        <ProfileGithub />
+      <div className="container">
+        <div className="row">
+          <div className="col-md-12">{profileConent}</div>
+        </div>
       </div>
     );
   }
@@ -50,7 +53,7 @@ class Profile extends Component {
 
 Profile.propTypes = {
   profile: PropTypes.object.isRequired,
-  getProfile: PropTypes.func.isRequired
+  getProfileByHandle: PropTypes.func.isRequired
 };
 const mapStateToProps = state => ({
   profile: state.profile
