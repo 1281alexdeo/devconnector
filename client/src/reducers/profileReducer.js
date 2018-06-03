@@ -4,6 +4,7 @@ import {
   CLEAR_CURRENT_PROFILE,
   GET_PROFILES
 } from '../actions/types';
+
 //initial state
 const initalState = {
   loading: false,
@@ -30,7 +31,7 @@ export default function(state = initalState, action) {
         ...state, //get current state
         profile: null //setting the profile back to null once the user has logged out
       };
-    case GET_PROFILES:
+    case GET_PROFILES: //get profiles of all developers
       return {
         ...state,
         profiles: action.payload,
