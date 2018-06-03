@@ -14,7 +14,6 @@ class ProfileGithub extends Component {
   }
   componentDidMount = () => {
     const { username } = this.props;
-    console.log('USERNAME', username);
     const { clientId, clientSecret, count, sort } = this.state;
     fetch(
       `https://api.github.com/users/${username}/repos?&per_page=${count}&sort=${sort}&client_id=${clientId}&client_secret=${clientSecret}`
@@ -60,12 +59,17 @@ class ProfileGithub extends Component {
         </div>
       );
     });
+
     return (
       // have to put ref to fix the error (can't call setState or (force update) on unmounted component,indicated memory leak in you applciaiotn
       <div ref="myRef">
         <hr />
-        <h3 className=" mb-4 ">Latest Github Repo</h3>
-        {repoItems}
+        {repos.length === 0 ? null : (
+          <div>
+            <h4 className="display-5">Latest Github Repos</h4>
+            <span>{repoItems}</span>
+          </div>
+        )}
       </div>
     );
   }

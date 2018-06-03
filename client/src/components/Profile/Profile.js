@@ -17,6 +17,13 @@ class Profile extends Component {
       this.props.getProfileByHandle(this.props.match.params.handle);
   };
 
+  //check if the profile is null or page is laoding is true
+  componentWillReceiveProps(nextProp) {
+    if (nextProp.profile.profile === null && this.props.profile.loading) {
+      this.props.history.push('/not-found');
+    }
+  }
+
   render() {
     const { profile, loading } = this.props.profile;
     let profileConent;

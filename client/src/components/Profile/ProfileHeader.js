@@ -19,7 +19,7 @@ class ProfileHeader extends Component {
               </div>
             </div>
             <div className="text-center">
-              <h1 className="display-4 text-center">{profile.handle}</h1>
+              <h3 className="display-4 text-center">{profile.handle}</h3>
               <p className="lead text-center">
                 {profile.status}
                 {isEmpty(profile.company) ? null : (
