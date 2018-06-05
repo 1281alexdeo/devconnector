@@ -20,8 +20,6 @@ class PostForm extends Component {
   }
   onSubmit(e) {
     e.preventDefault();
-    console.log('submitted');
-
     const { user } = this.props.auth;
     const newPost = {
       text: this.state.text,
@@ -52,7 +50,6 @@ class PostForm extends Component {
             <form onSubmit={this.onSubmit}>
               <div className="form-group">
                 <TextAreaFieldGroup
-                  className="form-control form-control-lg"
                   placeholder="Create a post"
                   value={this.state.text}
                   onChange={this.onChange}
@@ -70,6 +67,12 @@ class PostForm extends Component {
     );
   }
 }
+PostForm.propsTypes = {
+  auth: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
+  addPost: PropTypes.func.isRequired
+};
+
 const mapStateToProps = state => ({
   auth: state.auth,
   errors: state.errors
