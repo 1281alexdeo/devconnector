@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
-
+import { deletePost, likePost, unlikePost } from '../../actions/postActions';
 class PostItem extends Component {
   onDeleteClick(id) {
     this.props.deletePost(id);
