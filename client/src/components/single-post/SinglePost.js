@@ -1,6 +1,12 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { getPost } from '../../actions/postActions';
 
 class SinglePost extends Component {
+  componentDidMount = () => {
+    this.props.getPost(this.props.match.params.id);
+  };
+
   render() {
     return (
       <div>
@@ -9,4 +15,7 @@ class SinglePost extends Component {
     );
   }
 }
-export default SinglePost;
+const mapStateToProps = state => ({
+  post: state.post
+});
+export default connect(mapStateToProps, { getPost })(SinglePost);
