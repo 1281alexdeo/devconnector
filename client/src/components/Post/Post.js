@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { getPost } from '../../actions/postActions';
 
-class SinglePost extends Component {
+class Post extends Component {
   componentDidMount = () => {
     this.props.getPost(this.props.match.params.id); //get id from url
   };
@@ -21,4 +21,4 @@ const mapStateToProps = state => ({
 export default connect(
   mapStateToProps,
   { getPost }
-)(SinglePost);
+)(Post);

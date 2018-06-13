@@ -43,14 +43,6 @@ class AddExperience extends Component {
     });
   }
   onCurrentChange(e) {
-    // const d = new Date();
-    // let Present = {
-    //   date: d.getDate(),
-    //   month: d.getMonth(),
-    //   year: d.getFullYear()
-    // };
-    // const today = ` ${Present.year}-${Present.month + 1}-${Present.date}`;
-
     this.setState({
       [e.target.name]: !this.state.current
       // to: today
@@ -158,6 +150,7 @@ const mapStateToProps = state => ({
   profile: state.profile,
   errors: state.errors
 });
-export default connect(mapStateToProps, { addExperience })(
-  withRouter(AddExperience)
-);
+export default connect(
+  mapStateToProps,
+  { addExperience }
+)(withRouter(AddExperience));
