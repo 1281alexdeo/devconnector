@@ -199,11 +199,11 @@ router.delete(
   '/comments/:post_id/:comment_id',
   passport.authenticate('jwt', { session: false }),
   (req, res) => {
-    let { errors, isValid } = validatePostInput(req.body);
-    //check validaiton
-    if (!isValid) {
-      return res.status(400).json(errors);
-    }
+    // let { errors, isValid } = validatePostInput(req.body);
+    // //check validaiton
+    // if (!isValid) {
+    //   return res.status(400).json(errors);
+    // }
     Post.findById(req.params.post_id).then(post => {
       //check if the comment exsists
       if (

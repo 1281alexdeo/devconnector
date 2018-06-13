@@ -5,7 +5,8 @@ import { getPost } from '../../actions/postActions';
 import Spinner from '../../common/Spinner';
 import PostItem from '../posts/PostItem';
 import CommentForm from './CommentForm';
-// import PostItem from '../../components/posts/PostItem';
+import CommentFeed from './CommentFeed';
+
 class Post extends Component {
   componentDidMount = () => {
     this.props.getPost(this.props.match.params.id); //get id from url
@@ -16,7 +17,7 @@ class Post extends Component {
     if ((post === null && loading) || Object.keys(post).length === 0) {
       postContent = <Spinner />;
     } else {
-      postContent = <PostItem post={post.post} showActions={false} />; //customize PostItem  showActions
+      postContent = <PostItem post={post.post} showActions={false} />; //customize PostItem with showActions
     }
     return (
       <div className="post">
@@ -28,6 +29,10 @@ class Post extends Component {
               </Link>
               {postContent}
               <CommentForm postId={post.post._id} />
+              <CommentFeed
+                postId={post.post._id}
+                comments={post.post.comments}
+              />
             </div>
           </div>
         </div>
