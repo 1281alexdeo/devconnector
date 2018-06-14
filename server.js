@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+const path = require('path');
 const compression = require('compression');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
@@ -30,6 +31,15 @@ const posts = require('./routes/api/posts');
 app.use('/api/users', users);
 app.use('/api/profile', profile);
 app.use('/api/posts', posts);
+
+//server static assests if in production.
+if (process.env.NODE_ENV === 'production') {
+  //set a static folder
+  app.use(express.static('client/build'));
+  app.get('*', (req, res) => {
+    res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html')); //make sure bring in path module
+  });
+}
 
 const port = process.env.PORT || 5000; //because we are depoying on to heroku or run on port 5000 ///
 
